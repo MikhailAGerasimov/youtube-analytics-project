@@ -18,6 +18,37 @@ class Channel:
         self. subscriber_count = self.channel_list["items"][0]["statistics"]["subscriberCount"]
         self.view_count = self.channel_list["items"][0]["statistics"]["viewCount"]
 
+    def __str__(self):
+        return f"{self.title} ({self.url})"
+
+    """
+    Блок магических методов, отвечающих за операции с экзеплярами клласса
+    """
+    def __add__(self, other):
+        return int(self.subscriber_count) + int(other.subscriber_count)
+
+    def __sub__(self, other):
+        return int(self.subscriber_count) - int(other.subscriber_count)
+
+    def __gt__(self, other):
+        return True if int(self.subscriber_count) > int(other.subscriber_count) else False
+
+    def __ge__(self, other):
+        return True if int(self.subscriber_count) >= int(other.subscriber_count) else False
+
+    def __lt__(self, other):
+        return True if int(self.subscriber_count) < int(other.subscriber_count) else False
+
+    def __le__(self, other):
+        return True if int(self.subscriber_count) <= int(other.subscriber_count) else False
+
+    def __eq__(self, other):
+        return True if int(self.subscriber_count) == int(other.subscriber_count) else False
+
+    """
+    Конец блока магических методов, отвечающих за операции с экзеплярами клласса
+    """
+
     @property
     def channel_id(self):
         return self.__channelid
